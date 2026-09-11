@@ -1,0 +1,13 @@
+# Test screenshots & previews
+preview-*.png
+redesign-*.png
+test_*.png
+responsive_*.png
+verify_*.png
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ostrelya — Digital Experiences for Ambitious Brands</title>
+  <meta name="description" content="Ostrelya is a premium web design and development studio creating refined digital experiences for ambitious brands." />
+  <meta name="theme-color" content="#FAFAF8" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ostrelya" />
+  <meta property="og:title" content="Ostrelya — Digital Experiences for Ambitious Brands" />
+  <meta property="og:description" content="Premium web design & development studio. Built with precision and architectural restraint." />
+  <meta property="og:image" content="assets/reference-hero.jpg" />
+
+  <link rel="icon" type="image/png" href="assets/symbol-dark.png" />
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ==================== 1. STICKY NAVIGATION ==================== -->
+  <header class="site-header" id="top" role="banner">
+    <div class="nav-container">
+      <a href="#top" class="brand-link" aria-label="Ostrelya Home">
+        <img src="assets/logo-dark.png" alt="Ostrelya" width="146" height="42" class="brand-logo" />
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#work" class="nav-link">Work</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#studio" class="nav-link">About</a></li>
+          <li><a href="#journal" class="nav-link">Journal</a></li>
+        </ul>
+
+        <a href="#contact" class="btn-talk">
+          <span>Let's talk</span>
+          <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="2" y1="12" x2="12" y2="2"></line>
+            <polyline points="4 2 12 2 12 10"></polyline>
+          </svg>
+        </a>
+      </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileMenu" aria-hidden="true">
+      <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+        <a href="#work" class="mobile-link">Work</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="#studio" class="mobile-link">About</a>
+        <a href="#journal" class="mobile-link">Journal</a>
+      </nav>
+      <div class="mobile-cta-wrap">
+        <a href="#contact" class="btn-talk w-full">
+          <span>Let's talk</span>
+          <svg class="icon-arrow" viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="2" y1="12" x2="12" y2="2"></line>
+            <polyline points="4 2 12 2 12 10"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ==================== 2. MAIN HERO ==================== -->
+    <section class="hero-section" aria-label="Hero">
+      <!-- Architectural diagonal hairline rules following Ostrelya arrow angle -->
+      <div class="hero-architectural-lines" aria-hidden="true">
+        <span class="diagonal-line line-tangent-tip"></span>
+        <span class="diagonal-line line-tangent-base"></span>
+        <span class="diagonal-line line-cross-field"></span>
+      </div>
+
+      <div class="hero-container">
+        <!-- Left Column: Typographic Mass -->
+        <div class="hero-content">
+          <h1 class="hero-title">Ostrelya</h1>
+          <p class="hero-tagline">Digital experiences for ambitious brands.</p>
+          <div class="hero-cta-group">
+            <a href="#work" class="btn-primary">
+              <span>View our work</span>
+              <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="2" y1="12" x2="12" y2="2"></line>
+                <polyline points="4 2 12 2 12 10"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Massive Official Emblem -->
+        <div class="hero-emblem-wrap">
+          <div class="emblem-stage">
+            <img
+              src="assets/symbol-dark.png"
+              alt="Ostrelya emblem"
+              class="hero-emblem"
+              width="600"
+              height="600"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Subtle Hairline Horizontal Divider -->
+      <div class="hero-divider" aria-hidden="true"></div>
+    </section>
+
+    <!-- ==================== 3. FEATURED WORK ==================== -->
+    <section class="work-section" id="work" aria-label="Featured Work">
+      <div class="page-container">
+        <div class="work-grid">
+
+          <!-- Card 01: S. / A Brighter Tomorrow -->
+          <article class="project-card card-dark" data-project="01">
+            <a href="#contact" class="card-inner-link" aria-label="View project A Brighter Tomorrow">
+              <div class="card-media">
+                <img src="assets/project-1.jpg" alt="A Brighter Tomorrow" class="card-image" loading="lazy" />
+                <div class="card-overlay" aria-hidden="true"></div>
+              </div>
+
+              <!-- Top indicators -->
+              <div class="card-top">
+                <span class="indicator-symbol">S.</span>
+                <span class="indicator-dashes" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i>
+                </span>
+              </div>
+
+              <!-- Bottom details -->
+              <div class="card-bottom">
+                <div class="card-meta">
+                  <h2 class="card-title">A Brighter<br />Tomorrow</h2>
+                  <span class="card-category">BRAND PLATFORM</span>
+                </div>
+                <div class="card-arrow-wrap" aria-hidden="true">
+                  <svg class="card-arrow" viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="2" y1="12" x2="12" y2="2"></line>
+                    <polyline points="4 2 12 2 12 10"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Card 02: V. / Human Progress Amplified -->
+          <article class="project-card card-light" data-project="02">
+            <a href="#contact" class="card-inner-link" aria-label="View project Human Progress Amplified">
+              <div class="card-media">
+                <img src="assets/project-2.jpg" alt="Human Progress Amplified" class="card-image" loading="lazy" />
+                <div class="card-overlay" aria-hidden="true"></div>
+              </div>
+
+              <!-- Top indicators -->
+              <div class="card-top">
+                <span class="indicator-symbol">V.</span>
+                <span class="indicator-dashes" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                </span>
+              </div>
+
+              <!-- Bottom details -->
+              <div class="card-bottom">
+                <div class="card-meta">
+                  <h2 class="card-title">Human<br />Progress<br />Amplified</h2>
+                  <span class="card-category">PRODUCT WEBSITE</span>
+                </div>
+                <div class="card-arrow-wrap" aria-hidden="true">
+                  <svg class="card-arrow" viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="2" y1="12" x2="12" y2="2"></line>
+                    <polyline points="4 2 12 2 12 10"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Card 03: K. / Beyond Boundaries -->
+          <article class="project-card card-dark" data-project="03">
+            <a href="#contact" class="card-inner-link" aria-label="View project Beyond Boundaries">
+              <div class="card-media">
+                <img src="assets/project-3.jpg" alt="Beyond Boundaries" class="card-image" loading="lazy" />
+                <div class="card-overlay" aria-hidden="true"></div>
+              </div>
+
+              <!-- Top indicators -->
+              <div class="card-top">
+                <span class="indicator-symbol">K.</span>
+                <span class="indicator-dashes" aria-hidden="true">
+                  <i></i>
+                </span>
+              </div>
+
+              <!-- Bottom details -->
+              <div class="card-bottom">
+                <div class="card-meta">
+                  <h2 class="card-title">Beyond<br />Boundaries</h2>
+                  <span class="card-category">CAMPAIGN WEBSITE</span>
+                </div>
+                <div class="card-arrow-wrap" aria-hidden="true">
+                  <svg class="card-arrow" viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="2" y1="12" x2="12" y2="2"></line>
+                    <polyline points="4 2 12 2 12 10"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Card 04: ○ / Built for What's Next -->
+          <article class="project-card card-light" data-project="04">
+            <a href="#contact" class="card-inner-link" aria-label="View project Built for What's Next">
+              <div class="card-media">
+                <img src="assets/project-4.jpg" alt="Built for What's Next" class="card-image" loading="lazy" />
+                <div class="card-overlay" aria-hidden="true"></div>
+              </div>
+
+              <!-- Top indicators -->
+              <div class="card-top">
+                <span class="indicator-symbol glyph-circle">○</span>
+                <span class="indicator-dashes" aria-hidden="true">
+                  <i></i><i></i>
+                </span>
+              </div>
+
+              <!-- Bottom details -->
+              <div class="card-bottom">
+                <div class="card-meta">
+                  <h2 class="card-title">Built<br />for What’s<br />Next</h2>
+                  <span class="card-category">BRAND &amp; WEB</span>
+                </div>
+                <div class="card-arrow-wrap" aria-hidden="true">
+                  <svg class="card-arrow" viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="2" y1="12" x2="12" y2="2"></line>
+                    <polyline points="4 2 12 2 12 10"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. STUDIO POSITIONING ==================== -->
+    <section class="studio-section" id="studio" aria-label="The Studio">
+      <div class="page-container">
+        <div class="section-eyebrow">THE STUDIO</div>
+
+        <div class="studio-layout">
+          <div class="studio-statement">
+            <h2 class="statement-headline">
+              We design digital experiences<br class="desktop-break" />with clarity, character<br class="desktop-break" />and purpose.
+            </h2>
+          </div>
+
+          <div class="studio-narrative">
+            <p class="narrative-p">
+              Ostrelya partners with ambitious brands to create thoughtful websites, identities and digital systems designed to last.
+            </p>
+            <p class="narrative-sub">
+              Rooted in architectural precision and editorial balance, our work marries Swiss graphic restraint with sophisticated digital execution. Every layout, transition, and detail is calculated.
+            </p>
+            <div class="studio-signature">
+              <span class="sig-label">STUDIO LOCATION</span>
+              <span class="sig-val">Zagreb, Croatia &mdash; Global Delivery</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. SERVICES PREVIEW ==================== -->
+    <section class="services-section" id="services" aria-label="Services Preview">
+      <div class="page-container">
+        <div class="services-header">
+          <div class="services-header-left">
+            <div class="section-eyebrow">WHAT WE DO</div>
+            <h2 class="services-headline">Strategy.<br />Design.<br />Development.</h2>
+          </div>
+          <div class="services-header-right">
+            <a href="#contact" class="services-cta-link">
+              <span>Explore services</span>
+              <svg class="icon-arrow" viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="2" y1="12" x2="12" y2="2"></line>
+                <polyline points="4 2 12 2 12 10"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="services-list" role="list">
+          <!-- Service 01 -->
+          <div class="service-row" role="listitem">
+            <span class="service-num">01</span>
+            <div class="service-title-col">
+              <h3 class="service-title">Brand Strategy</h3>
+            </div>
+            <div class="service-desc-col">
+              <p class="service-desc">Positioning, creative direction and digital strategy.</p>
+            </div>
+            <div class="service-arrow-col" aria-hidden="true">
+              <svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="2" y1="12" x2="12" y2="2"></line>
+                <polyline points="4 2 12 2 12 10"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Service 02 -->
+          <div class="service-row" role="listitem">
+            <span class="service-num">02</span>
+            <div class="service-title-col">
+              <h3 class="service-title">Web Design</h3>
+            </div>
+            <div class="service-desc-col">
+              <p class="service-desc">High-end digital experiences built around clarity and usability.</p>
+            </div>
+            <div class="service-arrow-col" aria-hidden="true">
+              <svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="2" y1="12" x2="12" y2="2"></line>
+                <polyline points="4 2 12 2 12 10"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Service 03 -->
+          <div class="service-row" role="listitem">
+            <span class="service-num">03</span>
+            <div class="service-title-col">
+              <h3 class="service-title">Web Development</h3>
+            </div>
+            <div class="service-desc-col">
+              <p class="service-desc">Fast, responsive and scalable websites built with precision.</p>
+            </div>
+            <div class="service-arrow-col" aria-hidden="true">
+              <svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="2" y1="12" x2="12" y2="2"></line>
+                <polyline points="4 2 12 2 12 10"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Service 04 -->
+          <div class="service-row" role="listitem">
+            <span class="service-num">04</span>
+            <div class="service-title-col">
+              <h3 class="service-title">Motion &amp; Interaction</h3>
+            </div>
+            <div class="service-desc-col">
+              <p class="service-desc">Purposeful movement that makes digital experiences feel alive.</p>
+            </div>
+            <div class="service-arrow-col" aria-hidden="true">
+              <svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="2" y1="12" x2="12" y2="2"></line>
+                <polyline points="4 2 12 2 12 10"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. PHILOSOPHY ==================== -->
+    <section class="philosophy-section" id="philosophy" aria-label="Philosophy">
+      <div class="page-container">
+        <div class="philosophy-layout">
+          <!-- Left Column (42%): Large Headline & Eyebrow -->
+          <div class="philosophy-header-col">
+            <span class="section-eyebrow">PHILOSOPHY</span>
+            <h2 class="philosophy-headline">
+              Built to be noticed.<br />Designed to last.
+            </h2>
+          </div>
+
+          <!-- Right Column (58%): Asymmetrical Vertical Editorial List -->
+          <div class="philosophy-list-col">
+            <!-- Principle 01 -->
+            <div class="philosophy-item">
+              <span class="philosophy-accent-line" aria-hidden="true"></span>
+              <div class="philosophy-item-main">
+                <span class="philosophy-num">01</span>
+                <div class="philosophy-body">
+                  <h3 class="philosophy-title">PRECISION</h3>
+                  <p class="philosophy-desc">Every detail has a reason.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Principle 02 -->
+            <div class="philosophy-item">
+              <span class="philosophy-accent-line" aria-hidden="true"></span>
+              <div class="philosophy-item-main">
+                <span class="philosophy-num">02</span>
+                <div class="philosophy-body">
+                  <h3 class="philosophy-title">CLARITY</h3>
+                  <p class="philosophy-desc">Complex ideas made effortless.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Principle 03 -->
+            <div class="philosophy-item">
+              <span class="philosophy-accent-line" aria-hidden="true"></span>
+              <div class="philosophy-item-main">
+                <span class="philosophy-num">03</span>
+                <div class="philosophy-body">
+                  <h3 class="philosophy-title">MOTION</h3>
+                  <p class="philosophy-desc">Interaction that feels natural.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. HOW WE WORK ==================== -->
+    <section class="process-section" id="process" aria-label="How We Work">
+      <div class="page-container">
+        <div class="process-header">
+          <span class="section-eyebrow">HOW WE WORK</span>
+          <span class="process-range-label" aria-hidden="true">01 &mdash; 04</span>
+        </div>
+
+        <div class="process-stage" id="processStage">
+          <!-- Dynamic architectural Bézier trajectory connecting 01 -> 02 -> 03 -> 04 -->
+          <svg class="process-trajectory-svg" id="processSvg" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="processLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#087BFF" stop-opacity="0.2" />
+                <stop offset="50%" stop-color="#224DFF" stop-opacity="0.15" />
+                <stop offset="100%" stop-color="#8500FF" stop-opacity="0.25" />
+              </linearGradient>
+              <linearGradient id="processActiveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#087BFF" />
+                <stop offset="45%" stop-color="#224DFF" />
+                <stop offset="100%" stop-color="#8500FF" />
+              </linearGradient>
+            </defs>
+            <!-- Faint Base Guide Path (Dashed Architectural Line) -->
+            <path class="process-path-base" id="processPathBase" d="M 60 120 C 240 120, 360 200, 460 240 C 520 280, 260 380, 220 420 C 180 460, 600 520, 880 560" stroke="url(#processLineGrad)" stroke-width="1.25" stroke-dasharray="3 5" />
+            <!-- Active Illuminated Path (Scroll-driven progressive draw) -->
+            <path class="process-path-active" id="processPathActive" d="M 60 120 C 240 120, 360 200, 460 240 C 520 280, 260 380, 220 420 C 180 460, 600 520, 880 560" stroke="url(#processActiveGrad)" stroke-width="1.75" />
+            <!-- Traveling Needle Tracer Pulse -->
+            <circle class="process-tracer-dot" id="processTracerDot" r="3.5" fill="#224DFF" />
+          </svg>
+
+          <!-- Asymmetric Staggered Steps -->
+          <div class="process-staggered-track">
+            <!-- Step 01: Discover (Aligned toward Left) -->
+            <div class="process-node node-1" data-step="1">
+              <span class="process-step-num">01</span>
+              <h3 class="process-step-title">Discover</h3>
+              <p class="process-step-desc">Understand the brand,<br />audience and opportunity.</p>
+            </div>
+
+            <!-- Step 02: Design (Slightly further Right) -->
+            <div class="process-node node-2" data-step="2">
+              <span class="process-step-num">02</span>
+              <h3 class="process-step-title">Design</h3>
+              <p class="process-step-desc">Shape strategy into a distinctive<br />digital direction.</p>
+            </div>
+
+            <!-- Step 03: Build (Moves back toward Center/Left) -->
+            <div class="process-node node-3" data-step="3">
+              <span class="process-step-num">03</span>
+              <h3 class="process-step-title">Build</h3>
+              <p class="process-step-desc">Develop with performance,<br />precision and care.</p>
+            </div>
+
+            <!-- Step 04: Refine (Furthest toward Right) -->
+            <div class="process-node node-4" data-step="4">
+              <span class="process-step-num">04</span>
+              <h3 class="process-step-title">Refine</h3>
+              <p class="process-step-desc">Test, polish and improve<br />every detail.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 8. LARGE CLOSING CTA ==================== -->
+    <section class="closing-cta-section" id="contact" aria-label="Closing Call to Action">
+      <div class="page-container">
+        <div class="cta-panel">
+          <div class="cta-diagonal-accent" aria-hidden="true"></div>
+
+          <div class="cta-panel-content">
+            <div class="cta-text-group">
+              <h2 class="cta-title">Let’s build something<br />worth remembering.</h2>
+              <p class="cta-sub">Have a project in mind?<br />Let’s make it exceptional.</p>
+            </div>
+
+            <div class="cta-action-group">
+              <a href="mailto:hello@ostrelya.com" class="btn-primary btn-cta-large">
+                <span>Start a project</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </a>
+              <span class="cta-direct-email"><a href="mailto:hello@ostrelya.com">hello@ostrelya.com</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 9. FOOTER ==================== -->
+  <footer class="site-footer" id="journal" role="contentinfo">
+    <div class="page-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="#top" class="footer-logo-link" aria-label="Ostrelya back to top">
+            <img src="assets/logo-dark.png" alt="Ostrelya" width="168" height="48" class="footer-logo-img" />
+          </a>
+          <p class="footer-brand-tagline">
+            Refined digital experiences for ambitious brands.<br />Zagreb, Croatia &mdash; Global Delivery.
+          </p>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-nav-col">
+            <span class="footer-col-heading">Navigation</span>
+            <ul class="footer-list">
+              <li><a href="#work">Work</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#studio">About</a></li>
+              <li><a href="#journal">Journal</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <span class="footer-col-heading">Contact</span>
+            <ul class="footer-list">
+              <li><a href="mailto:hello@ostrelya.com">hello@ostrelya.com</a></li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+              <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <span class="footer-col-heading">Location</span>
+            <p class="footer-location-text">
+              Croatia / Europe<br />
+              Central European Time<br />
+              Operating Worldwide
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">
+          <span class="copyright">&copy; 2026 Ostrelya.</span>
+          <span class="footer-bullet" aria-hidden="true">&bull;</span>
+          <span class="location-badge">Croatia / Europe</span>
+        </div>
+
+        <div class="footer-bottom-right">
+          <a href="#top" class="back-to-top" id="backToTop">
+            <span>Back to top</span>
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="7" y1="12" x2="7" y2="2"></line>
+              <polyline points="2 7 7 2 12 7"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
