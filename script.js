@@ -76,6 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5. How We Work — Dynamic Architectural Trajectory & Scroll Transition
   initProcessTrajectory();
+
+  // 6. Cinematic Brand Preloader
+  initStudioLoader();
 });
 
 function initProcessTrajectory() {
@@ -387,3 +390,316 @@ function initProcessTrajectory() {
     updateOnScroll();
   }, 50);
 }
+
+/**
+ * 6. CINEMATIC BRAND PRELOADER CONTROLLER
+ * Architectural reveal sequence matching Ostrelya Studio design language
+ */
+function initStudioLoader() {
+  const studioLoader = document.getElementById('studioLoader');
+  if (!studioLoader) return;
+
+  // Allow bypassing with ?skipLoader in URL
+  if (window.location.search.includes('skipLoader')) {
+    studioLoader.style.display = 'none';
+    document.body.classList.remove('loader-active');
+    return;
+  }
+
+  const loaderLockup = document.getElementById('loaderLockup');
+  const loaderEmblem = document.getElementById('loaderEmblem');
+  const emblemHalo = document.getElementById('emblemHalo');
+  const loaderShockwave = document.getElementById('loaderShockwave');
+  const loaderArrow = document.getElementById('loaderArrow');
+  const ringTl = document.getElementById('ringTl');
+  const ringBr = document.getElementById('ringBr');
+
+  const maskTl = document.getElementById('maskPathTl');
+  const maskBr = document.getElementById('maskPathBr');
+  const maskArrow = document.getElementById('maskPathArrow');
+  const glowTraceTl = document.getElementById('glowTraceTl');
+  const glowTraceBr = document.getElementById('glowTraceBr');
+  const glowTraceArrow = document.getElementById('glowTraceArrow');
+  const tipBurst = document.getElementById('tipBurst');
+  const forgingOrb = document.getElementById('forgingOrb');
+
+  const loaderTextWrap = document.getElementById('loaderTextWrap');
+  const loaderGlint = document.getElementById('loaderGlint');
+  const loaderSubWrap = document.getElementById('loaderSubWrap');
+  const loaderProgressBar = document.getElementById('loaderProgressBar');
+  const loaderCounter = document.getElementById('loaderCounter');
+
+  if (typeof gsap === 'undefined' || !maskTl || !maskBr || !maskArrow) {
+    setTimeout(() => {
+      studioLoader.style.transition = 'opacity 0.5s ease';
+      studioLoader.style.opacity = '0';
+      setTimeout(() => {
+        studioLoader.style.display = 'none';
+        document.body.classList.remove('loader-active');
+      }, 500);
+    }, 1200);
+    return;
+  }
+
+  function setOrbPos(x, y) {
+    if (forgingOrb) forgingOrb.setAttribute('transform', `translate(${x}, ${y})`);
+  }
+
+  document.body.classList.add('loader-active');
+  studioLoader.style.display = 'flex';
+  gsap.set(studioLoader, { yPercent: 0, opacity: 1 });
+  gsap.set(loaderLockup, { opacity: 1, y: 0 });
+
+  // Emblem and halo states
+  gsap.set(loaderEmblem, { scale: 1, opacity: 1 });
+  gsap.set(emblemHalo, { opacity: 0, scale: 0.6 });
+  gsap.set(loaderShockwave, { opacity: 0, scale: 0.2 });
+
+  // Calculate stroke lengths
+  const lenTl = maskTl.getTotalLength();
+  const lenBr = maskBr.getTotalLength();
+  const lenArrow = maskArrow.getTotalLength();
+
+  [maskTl, glowTraceTl].forEach(el => {
+    if (el) {
+      el.style.strokeDasharray = lenTl;
+      el.style.strokeDashoffset = lenTl;
+    }
+  });
+
+  [maskBr, glowTraceBr].forEach(el => {
+    if (el) {
+      el.style.strokeDasharray = lenBr;
+      el.style.strokeDashoffset = lenBr;
+    }
+  });
+
+  [maskArrow, glowTraceArrow].forEach(el => {
+    if (el) {
+      el.style.strokeDasharray = lenArrow;
+      el.style.strokeDashoffset = lenArrow;
+    }
+  });
+
+  // Orb initial setup
+  const startPt = maskTl.getPointAtLength(0);
+  setOrbPos(startPt.x, startPt.y);
+  if (forgingOrb) gsap.set(forgingOrb, { opacity: 0, scale: 1 });
+  if (tipBurst) gsap.set(tipBurst, { opacity: 0, scale: 0.3 });
+  gsap.set([glowTraceTl, glowTraceBr, glowTraceArrow].filter(Boolean), { opacity: 0 });
+
+  gsap.set(loaderTextWrap, { width: 0, opacity: 0, marginLeft: 0 });
+  gsap.set(loaderGlint, { left: '-150%' });
+  gsap.set(loaderSubWrap, { opacity: 0, y: 14 });
+  gsap.set(loaderProgressBar, { width: '0%' });
+  if (loaderCounter) loaderCounter.textContent = '00%';
+
+  const isMobile = window.innerWidth < 640;
+  const targetTextWidth = isMobile ? 178 : 278;
+  const targetMarginLeft = isMobile ? 14 : 24;
+
+  const tl = gsap.timeline({
+    onUpdate: () => {
+      if (loaderCounter) {
+        const normProgress = Math.min(1, tl.time() / 2.6);
+        const p = Math.round(normProgress * 100);
+        loaderCounter.textContent = p < 10 ? '0' + p + '%' : p + '%';
+      }
+    }
+  });
+
+  /* ── PHASE 1: Orb Ignites & Forges Top-Left Ring Arc (0.05s – 0.50s) ── */
+  tl.to(forgingOrb, { opacity: 1, duration: 0.1, ease: 'power2.out' }, 0.05);
+  tl.to(glowTraceTl, { opacity: 1, duration: 0.08 }, 0.05);
+
+  tl.to({ p: 0 }, {
+    p: 1,
+    duration: 0.42,
+    ease: 'power2.inOut',
+    onUpdate: function() {
+      const val = this.targets()[0].p;
+      const curLen = val * lenTl;
+      maskTl.style.strokeDashoffset = lenTl - curLen;
+      glowTraceTl.style.strokeDashoffset = lenTl - curLen;
+      const pt = maskTl.getPointAtLength(curLen);
+      setOrbPos(pt.x, pt.y);
+    }
+  }, 0.08);
+
+  tl.to(glowTraceTl, { opacity: 0.2, duration: 0.25 }, 0.50);
+
+  /* ── PHASE 2: Orb Glides Across Gap & Forges Bottom-Right Ring Arc (0.50s – 0.98s) ── */
+  const brStartPt = maskBr.getPointAtLength(0);
+  tl.to(forgingOrb, {
+    duration: 0.10,
+    ease: 'power1.inOut',
+    onUpdate: function() {
+      const prog = this.progress();
+      const tlEndPt = maskTl.getPointAtLength(lenTl);
+      const x = tlEndPt.x + (brStartPt.x - tlEndPt.x) * prog;
+      const y = tlEndPt.y + (brStartPt.y - tlEndPt.y) * prog;
+      setOrbPos(x, y);
+    }
+  }, 0.50);
+
+  tl.to(glowTraceBr, { opacity: 1, duration: 0.05 }, 0.60);
+
+  tl.to({ p: 0 }, {
+    p: 1,
+    duration: 0.38,
+    ease: 'power2.inOut',
+    onUpdate: function() {
+      const val = this.targets()[0].p;
+      const curLen = val * lenBr;
+      maskBr.style.strokeDashoffset = lenBr - curLen;
+      glowTraceBr.style.strokeDashoffset = lenBr - curLen;
+      const pt = maskBr.getPointAtLength(curLen);
+      setOrbPos(pt.x, pt.y);
+    }
+  }, 0.60);
+
+  tl.to(glowTraceBr, { opacity: 0.2, duration: 0.25 }, 0.98);
+
+  /* ── PHASE 3: Orb Dives to Arrow Base & Blasts Up to Needle Tip (0.98s – 1.42s) ── */
+  const arStartPt = maskArrow.getPointAtLength(0);
+  tl.to(forgingOrb, {
+    duration: 0.12,
+    ease: 'power2.in',
+    onUpdate: function() {
+      const prog = this.progress();
+      const brEndPt = maskBr.getPointAtLength(lenBr);
+      const x = brEndPt.x + (arStartPt.x - brEndPt.x) * prog;
+      const y = brEndPt.y + (arStartPt.y - brEndPt.y) * prog;
+      setOrbPos(x, y);
+    }
+  }, 0.98);
+
+  tl.to(glowTraceArrow, { opacity: 1, duration: 0.05 }, 1.10);
+
+  tl.to({ p: 0 }, {
+    p: 1,
+    duration: 0.32,
+    ease: 'power3.out',
+    onUpdate: function() {
+      const val = this.targets()[0].p;
+      const curLen = val * lenArrow;
+      maskArrow.style.strokeDashoffset = lenArrow - curLen;
+      glowTraceArrow.style.strokeDashoffset = lenArrow - curLen;
+      const pt = maskArrow.getPointAtLength(curLen);
+      setOrbPos(pt.x, pt.y);
+    }
+  }, 1.10);
+
+  /* ── PHASE 4: Needle Tip Impact Burst, Shockwave & Backlight Halo (1.40s – 1.85s) ── */
+  if (tipBurst) {
+    tl.set(tipBurst, { opacity: 1, scale: 0.3 }, 1.40);
+    tl.to(tipBurst, {
+      scale: 1.4,
+      opacity: 1,
+      duration: 0.18,
+      ease: 'power2.out'
+    }, 1.40);
+    tl.to(tipBurst, {
+      scale: 2.2,
+      opacity: 0,
+      duration: 0.45,
+      ease: 'power2.out'
+    }, 1.58);
+  }
+
+  tl.to(forgingOrb, { scale: 1.8, opacity: 0, duration: 0.15, ease: 'power2.out' }, 1.42);
+  tl.to(glowTraceArrow, { opacity: 0, duration: 0.25 }, 1.42);
+
+  // Halo blossoms behind emblem
+  tl.to(emblemHalo, {
+    opacity: 0.95,
+    scale: 1,
+    duration: 0.55,
+    ease: 'power2.out'
+  }, 1.40);
+
+  // Shockwave pulse expands outward
+  tl.to(loaderShockwave, {
+    opacity: 0.85,
+    scale: 1.2,
+    duration: 0.22,
+    ease: 'power2.out'
+  }, 1.40);
+
+  tl.to(loaderShockwave, {
+    opacity: 0,
+    scale: 3.6,
+    duration: 0.45,
+    ease: 'power2.out'
+  }, 1.55);
+
+  /* ── PHASE 5: Wordmark Slides Open & Lockup Stays Centered (1.48s – 2.30s) ── */
+  tl.to(loaderTextWrap, {
+    width: targetTextWidth,
+    opacity: 1,
+    marginLeft: targetMarginLeft,
+    duration: 0.82,
+    ease: 'power3.inOut'
+  }, 1.48);
+
+  tl.to(loaderSubWrap, {
+    opacity: 1,
+    y: 0,
+    duration: 0.55,
+    ease: 'power2.out'
+  }, 1.65);
+
+  tl.to(loaderProgressBar, {
+    width: '100%',
+    duration: 1.8,
+    ease: 'power2.out'
+  }, 0.60);
+
+  /* ── PHASE 6: Letter-Strict Specular Glint Across "Ostrelya" (2.20s – 2.90s) ── */
+  tl.to(loaderGlint, {
+    left: '220%',
+    duration: 0.72,
+    ease: 'power1.inOut'
+  }, 2.20);
+
+  /* ── PHASE 7: Curtain Lift / Exit (3.10s – 3.85s) ── */
+  tl.to([loaderLockup, loaderSubWrap], {
+    y: -24,
+    opacity: 0,
+    duration: 0.45,
+    ease: 'power2.in'
+  }, 3.05);
+
+  tl.to(studioLoader, {
+    yPercent: -100,
+    duration: 0.75,
+    ease: 'power4.inOut',
+    onComplete: () => {
+      studioLoader.style.display = 'none';
+      document.body.classList.remove('loader-active');
+    }
+  }, 3.25);
+
+  const heroContent = document.querySelector('.hero-content');
+  const heroEmblemStage = document.querySelector('.emblem-stage');
+  if (heroContent && heroEmblemStage) {
+    tl.fromTo([heroContent, heroEmblemStage], {
+      y: 20,
+      opacity: 0.8
+    }, {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'power3.out'
+    }, 3.40);
+  }
+
+  // Check URL parameters for seek
+  const urlParams = new URLSearchParams(window.location.search);
+  const seekTime = urlParams.get('t');
+  if (seekTime !== null) {
+    tl.pause();
+    tl.seek(parseFloat(seekTime), false);
+  }
+}
+
