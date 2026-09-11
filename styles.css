@@ -1842,7 +1842,7 @@ ul, ol {
   border-radius: 20px;
   padding: clamp(2rem, 3.5vw, 3rem);
   display: grid;
-  grid-template-columns: 1.25fr 0.9fr 1.35fr;
+  grid-template-columns: 1.15fr 0.85fr 1.5fr;
   align-items: center;
   gap: clamp(1.5rem, 2.5vw, 3rem);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
@@ -1894,9 +1894,9 @@ ul, ol {
 .cta-promontory-img {
   width: 100%;
   height: auto;
-  max-height: 180px;
-  object-fit: contain;
-  mix-blend-mode: multiply;
+  max-height: 230px;
+  object-fit: cover;
+  border-radius: 16px;
   transition: transform var(--transition-medium);
 }
 
