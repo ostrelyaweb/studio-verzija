@@ -79,6 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Cinematic Brand Preloader
   initStudioLoader();
+
+  // 7. Cookie Consent Management (CMP)
+  initCookieConsent();
+
+  // 8. Accessible Service Modals (services.html)
+  initServiceModals();
+
+  // 9. Project Inquiry Form Controller (index.html)
+  initInquiryForm();
 });
 
 function initProcessTrajectory() {
@@ -702,4 +711,559 @@ function initStudioLoader() {
     tl.seek(parseFloat(seekTime), false);
   }
 }
+
+/* ==========================================================================
+   7. OSTRELYA COOKIE CONSENT MANAGER (CMP)
+   Architectural, GDPR & ePrivacy Compliant Consent System
+   ========================================================================== */
+function initCookieConsent() {
+  const STORAGE_KEY = 'ostrelya_consent';
+  const CONSENT_VERSION = 1;
+
+  // Global API exposed on window
+  window.OstrelyaConsent = {
+    getConsent: () => {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed && parsed.version === CONSENT_VERSION) return parsed;
+        }
+      } catch (e) {
+        console.warn('Ostrelya Consent: LocalStorage access error', e);
+      }
+      return null;
+    },
+    setConsent: (preferences) => {
+      const consentData = {
+        necessary: true,
+        analytics: Boolean(preferences.analytics),
+        marketing: Boolean(preferences.marketing),
+        timestamp: new Date().toISOString(),
+        version: CONSENT_VERSION
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(consentData));
+      } catch (e) {
+        console.warn('Ostrelya Consent: Failed to save consent', e);
+      }
+      window.dispatchEvent(new CustomEvent('ostrelya_consent_updated', { detail: consentData }));
+      applyConsent(consentData);
+      return consentData;
+    },
+    showPreferences: () => openPreferencesModal(),
+    showBanner: () => openBanner(),
+    hasAnswered: () => Boolean(window.OstrelyaConsent.getConsent()),
+    reset: () => {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (e) {}
+      openBanner();
+    }
+  };
+
+  // Helper to activate conditional scripts
+  function applyConsent(consent) {
+    if (consent.analytics) {
+      document.querySelectorAll('script[type="text/plain"][data-category="analytics"]').forEach(script => {
+        activateScript(script);
+      });
+    }
+    if (consent.marketing) {
+      document.querySelectorAll('script[type="text/plain"][data-category="marketing"]').forEach(script => {
+        activateScript(script);
+      });
+    }
+  }
+
+  function activateScript(scriptNode) {
+    const newScript = document.createElement('script');
+    Array.from(scriptNode.attributes).forEach(attr => {
+      if (attr.name !== 'type' && attr.name !== 'data-category') {
+        newScript.setAttribute(attr.name, attr.value);
+      }
+    });
+    newScript.type = 'text/javascript';
+    newScript.innerHTML = scriptNode.innerHTML;
+    scriptNode.parentNode.replaceChild(newScript, scriptNode);
+  }
+
+  // Ensure CMP elements are present in the DOM
+  ensureCmpDom();
+
+  const currentConsent = window.OstrelyaConsent.getConsent();
+  if (!currentConsent) {
+    // Coordinate appearance: wait for preloader curtain lift (3.6s) or show promptly
+    const hasLoader = document.getElementById('studioLoader');
+    const delay = hasLoader ? 3600 : 700;
+    setTimeout(() => {
+      openBanner();
+    }, delay);
+  } else {
+    applyConsent(currentConsent);
+  }
+
+  // Bind all trigger buttons across the site
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.open-cookie-settings, [data-action="open-cookie-settings"], #openCookieSettings');
+    if (trigger) {
+      e.preventDefault();
+      openPreferencesModal(trigger);
+    }
+  });
+
+  let lastActiveElement = null;
+
+  function ensureCmpDom() {
+    if (document.getElementById('ostrelyaCmpBanner')) return;
+
+    const cmpContainer = document.createElement('div');
+    cmpContainer.id = 'ostrelyaCmpContainer';
+    cmpContainer.innerHTML = `
+      <!-- Cookie Banner -->
+      <aside class="ostrelya-cmp-banner" id="ostrelyaCmpBanner" role="region" aria-label="Cookie consent banner" aria-hidden="true" style="display: none;">
+        <div class="cmp-banner-head">
+          <span class="cmp-banner-badge">Privacy &amp; Cookies</span>
+          <span class="cmp-banner-line" aria-hidden="true"></span>
+        </div>
+        <p class="cmp-banner-text">
+          We use strictly necessary cookies to ensure the proper functioning of this website. Non-essential cookies (such as analytics) are optional and disabled by default. Read our <a href="cookies.html">Cookie Policy</a> and <a href="privacy.html">Privacy Notice</a>.
+        </p>
+        <div class="cmp-banner-actions">
+          <div class="cmp-action-row">
+            <button type="button" class="cmp-btn cmp-btn-primary" id="cmpAcceptAll">Accept all</button>
+            <button type="button" class="cmp-btn cmp-btn-secondary" id="cmpRejectNonEssential">Reject non-essential</button>
+          </div>
+          <button type="button" class="cmp-btn cmp-btn-link" id="cmpOpenPreferences">Cookie settings</button>
+        </div>
+      </aside>
+
+      <!-- Preferences Modal -->
+      <div class="ostrelya-cmp-backdrop" id="ostrelyaCmpModal" role="dialog" aria-modal="true" aria-labelledby="cmpModalTitle" aria-hidden="true">
+        <div class="ostrelya-cmp-modal">
+          <div class="cmp-modal-header">
+            <h2 class="cmp-modal-title" id="cmpModalTitle">Cookie Preferences</h2>
+            <button type="button" class="cmp-modal-close" id="cmpCloseModal" aria-label="Close cookie settings (Escape)">
+              <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="2" y1="12" x2="12" y2="2"></line>
+                <polyline points="2 2 12 12"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="cmp-modal-body">
+            <p class="cmp-modal-intro">
+              Customize your privacy preferences below. Strictly necessary cookies cannot be disabled as they are required for security and core navigation. Non-essential cookies help us measure performance and improve your experience.
+            </p>
+
+            <!-- Necessary -->
+            <div class="cmp-category-card">
+              <div class="cmp-category-head">
+                <span class="cmp-category-name">Strictly Necessary</span>
+                <span class="cmp-badge-locked">Always Active</span>
+              </div>
+              <p class="cmp-category-desc">
+                Required for core website functionality, security, and storing your consent preferences. No personal tracking is performed.
+              </p>
+            </div>
+
+            <!-- Analytics -->
+            <div class="cmp-category-card">
+              <div class="cmp-category-head">
+                <label for="cmpToggleAnalytics" class="cmp-category-name" style="cursor:pointer;">Analytics &amp; Performance</label>
+                <label class="cmp-switch" for="cmpToggleAnalytics">
+                  <input type="checkbox" id="cmpToggleAnalytics" aria-label="Enable analytics cookies" />
+                  <span class="cmp-slider" aria-hidden="true"></span>
+                </label>
+              </div>
+              <p class="cmp-category-desc">
+                Allows us to aggregate anonymous visitor telemetry to understand website performance and improve user journeys.
+              </p>
+            </div>
+
+            <!-- Marketing -->
+            <div class="cmp-category-card">
+              <div class="cmp-category-head">
+                <label for="cmpToggleMarketing" class="cmp-category-name" style="cursor:pointer;">Marketing &amp; Personalization</label>
+                <label class="cmp-switch" for="cmpToggleMarketing">
+                  <input type="checkbox" id="cmpToggleMarketing" aria-label="Enable marketing cookies" />
+                  <span class="cmp-slider" aria-hidden="true"></span>
+                </label>
+              </div>
+              <p class="cmp-category-desc">
+                Currently not utilized by Ostrelya Studio. Kept disabled unless specific campaigns or personalized media are introduced.
+              </p>
+            </div>
+          </div>
+          <div class="cmp-modal-footer">
+            <button type="button" class="cmp-btn cmp-btn-secondary" id="cmpModalRejectAll">Reject all</button>
+            <button type="button" class="cmp-btn cmp-btn-primary" id="cmpSavePreferences">Save preferences</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(cmpContainer);
+
+    // Bind CMP banner buttons
+    document.getElementById('cmpAcceptAll').addEventListener('click', () => {
+      window.OstrelyaConsent.setConsent({ analytics: true, marketing: true });
+      closeBanner();
+    });
+
+    document.getElementById('cmpRejectNonEssential').addEventListener('click', () => {
+      window.OstrelyaConsent.setConsent({ analytics: false, marketing: false });
+      closeBanner();
+    });
+
+    document.getElementById('cmpOpenPreferences').addEventListener('click', () => {
+      openPreferencesModal();
+    });
+
+    // Bind CMP Modal buttons
+    document.getElementById('cmpCloseModal').addEventListener('click', () => {
+      closePreferencesModal();
+    });
+
+    document.getElementById('cmpModalRejectAll').addEventListener('click', () => {
+      window.OstrelyaConsent.setConsent({ analytics: false, marketing: false });
+      closePreferencesModal();
+      closeBanner();
+    });
+
+    document.getElementById('cmpSavePreferences').addEventListener('click', () => {
+      const analyticsChecked = document.getElementById('cmpToggleAnalytics').checked;
+      const marketingChecked = document.getElementById('cmpToggleMarketing').checked;
+      window.OstrelyaConsent.setConsent({ analytics: analyticsChecked, marketing: marketingChecked });
+      closePreferencesModal();
+      closeBanner();
+    });
+
+    // Close on backdrop click
+    const modalBackdrop = document.getElementById('ostrelyaCmpModal');
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) {
+        closePreferencesModal();
+      }
+    });
+
+    // Keyboard navigation (Escape on document & focus trap on modal)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('ostrelyaCmpModal');
+        if (modal && modal.classList.contains('active')) {
+          closePreferencesModal();
+        }
+      }
+    });
+
+    modalBackdrop.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        const focusable = modalBackdrop.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
+
+  function openBanner() {
+    const banner = document.getElementById('ostrelyaCmpBanner');
+    if (!banner) return;
+    banner.style.display = 'flex';
+    banner.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => {
+      banner.classList.add('active', 'visible');
+    });
+  }
+
+  function closeBanner() {
+    const banner = document.getElementById('ostrelyaCmpBanner');
+    if (!banner) return;
+    banner.classList.remove('active', 'visible');
+    banner.setAttribute('aria-hidden', 'true');
+    setTimeout(() => {
+      banner.style.display = 'none';
+    }, 400);
+  }
+
+  function openPreferencesModal(triggerElement = null) {
+    lastActiveElement = triggerElement || document.activeElement;
+    const modal = document.getElementById('ostrelyaCmpModal');
+    if (!modal) return;
+
+    // Load existing settings into toggles
+    const existing = window.OstrelyaConsent.getConsent() || { analytics: false, marketing: false };
+    const toggleAnalytics = document.getElementById('cmpToggleAnalytics');
+    const toggleMarketing = document.getElementById('cmpToggleMarketing');
+    if (toggleAnalytics) toggleAnalytics.checked = Boolean(existing.analytics);
+    if (toggleMarketing) toggleMarketing.checked = Boolean(existing.marketing);
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    // Focus close button
+    const closeBtn = document.getElementById('cmpCloseModal');
+    if (closeBtn) {
+      setTimeout(() => closeBtn.focus(), 50);
+    }
+  }
+
+  function closePreferencesModal() {
+    const modal = document.getElementById('ostrelyaCmpModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+      lastActiveElement.focus();
+    }
+  }
+}
+
+/* ==========================================================================
+   8. ACCESSIBLE SERVICE MODALS CONTROLLER (services.html)
+   Near-fullscreen architectural dialogs with WCAG 2.2 focus management
+   ========================================================================== */
+function initServiceModals() {
+  const cards = document.querySelectorAll('.service-card[data-service-id]');
+  if (!cards.length) return;
+
+  let activeModal = null;
+  let activeTrigger = null;
+
+  cards.forEach(card => {
+    const serviceId = card.getAttribute('data-service-id');
+    const targetModal = document.getElementById(`service-modal-${serviceId}`);
+    if (!targetModal) return;
+
+    const handleOpen = (e) => {
+      e.preventDefault();
+      openModal(targetModal, card);
+    };
+
+    card.addEventListener('click', handleOpen);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(targetModal, card);
+      }
+    });
+  });
+
+  // Modal close handlers
+  const allModals = document.querySelectorAll('.service-modal-backdrop');
+  allModals.forEach(modal => {
+    const closeBtn = modal.querySelector('.service-modal-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => closeModal(modal));
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal(modal);
+      }
+    });
+
+    modal.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  });
+
+  // Global Escape key support for active service modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && activeModal) {
+      closeModal(activeModal);
+    }
+  });
+
+  function openModal(modal, trigger) {
+    activeModal = modal;
+    activeTrigger = trigger;
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    const closeBtn = modal.querySelector('.service-modal-close');
+    if (closeBtn) {
+      setTimeout(() => closeBtn.focus(), 60);
+    }
+  }
+
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    const triggerToFocus = activeTrigger;
+    activeModal = null;
+    activeTrigger = null;
+
+    if (triggerToFocus && typeof triggerToFocus.focus === 'function') {
+      setTimeout(() => {
+        triggerToFocus.focus();
+      }, 50);
+    }
+  }
+}
+
+/* ==========================================================================
+   9. PROJECT INQUIRY FORM CONTROLLER
+   Privacy-first, data-minimized client validation and accessible live feedback
+   ========================================================================== */
+function initInquiryForm() {
+  const form = document.getElementById('inquiryForm');
+  if (!form) return;
+
+  const statusBox = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('formSubmitBtn');
+  const nameInput = document.getElementById('formName');
+  const emailInput = document.getElementById('formEmail');
+  const messageInput = document.getElementById('formMessage');
+  const honeypotInput = document.getElementById('formWebsite');
+  const tokenInput = document.getElementById('formTimestamp');
+
+  // Set anti-bot timestamp token
+  if (tokenInput) {
+    tokenInput.value = Date.now().toString();
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Check honeypot (anti-spam without invasive tracking)
+    if (honeypotInput && honeypotInput.value.trim() !== '') {
+      // Bot detected: simulate success silently
+      showSuccessFeedback();
+      form.reset();
+      return;
+    }
+
+    // Reset validation states
+    clearErrors();
+
+    let isValid = true;
+    let firstInvalid = null;
+
+    // Validate Name
+    if (!nameInput.value.trim()) {
+      setError(nameInput, 'Please enter your name.');
+      isValid = false;
+      if (!firstInvalid) firstInvalid = nameInput;
+    }
+
+    // Validate Email
+    const emailValue = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailValue) {
+      setError(emailInput, 'Please enter your work email address.');
+      isValid = false;
+      if (!firstInvalid) firstInvalid = emailInput;
+    } else if (!emailRegex.test(emailValue)) {
+      setError(emailInput, 'Please provide a valid email format (e.g. name@domain.com).');
+      isValid = false;
+      if (!firstInvalid) firstInvalid = emailInput;
+    }
+
+    // Validate Message
+    if (!messageInput.value.trim()) {
+      setError(messageInput, 'Please provide a brief overview of your project or requirements.');
+      isValid = false;
+      if (!firstInvalid) firstInvalid = messageInput;
+    } else if (messageInput.value.trim().length < 10) {
+      setError(messageInput, 'Please provide at least 10 characters describing your inquiry.');
+      isValid = false;
+      if (!firstInvalid) firstInvalid = messageInput;
+    }
+
+    if (!isValid) {
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    // UI Feedback: Submitting
+    const originalBtnHtml = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Sending inquiry...</span>';
+
+    try {
+      // Simulate respectful async processing
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      showSuccessFeedback();
+      form.reset();
+      if (tokenInput) tokenInput.value = Date.now().toString();
+    } catch (err) {
+      showErrorFeedback('An error occurred while submitting your message. Please try again or reach out directly to hello@ostrelya.com.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+    }
+  });
+
+  function setError(input, message) {
+    input.setAttribute('aria-invalid', 'true');
+    input.classList.add('has-error');
+    const errorElem = document.getElementById(`${input.id}Error`);
+    if (errorElem) {
+      errorElem.textContent = message;
+      errorElem.style.display = 'block';
+    }
+  }
+
+  function clearErrors() {
+    [nameInput, emailInput, messageInput].forEach((input) => {
+      if (input) {
+        input.removeAttribute('aria-invalid');
+        input.classList.remove('has-error');
+        const errorElem = document.getElementById(`${input.id}Error`);
+        if (errorElem) {
+          errorElem.textContent = '';
+          errorElem.style.display = 'none';
+        }
+      }
+    });
+    if (statusBox) {
+      statusBox.className = 'form-status';
+      statusBox.style.display = 'none';
+      statusBox.textContent = '';
+    }
+  }
+
+  function showSuccessFeedback() {
+    if (!statusBox) return;
+    statusBox.className = 'form-status success';
+    statusBox.textContent = 'Thank you for reaching out. Your inquiry has been received with strict confidentiality. We typically respond within 24–48 business hours.';
+    statusBox.style.display = 'block';
+    statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function showErrorFeedback(msg) {
+    if (!statusBox) return;
+    statusBox.className = 'form-status error';
+    statusBox.textContent = msg;
+    statusBox.style.display = 'block';
+    statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
 

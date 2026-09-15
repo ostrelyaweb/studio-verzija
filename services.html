@@ -16,14 +16,13 @@
 
   <link rel="icon" type="image/png" href="assets/symbol-dark.png" />
 
-  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
-
+  <!-- Self-Hosted Typography (Zero 3rd-party network requests on initial load) -->
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="assets/js/gsap.min.js"></script>
 </head>
 <body class="page-services">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ==================== 1. STICKY NAVIGATION ==================== -->
   <header class="site-header" id="top" role="banner">
@@ -137,7 +136,7 @@
         <div class="services-grid">
 
           <!-- Card 01: Brand Strategy -->
-          <article class="service-card">
+          <article class="service-card" data-service-id="01" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="service-modal-01" aria-label="Open detailed specifications for Brand Strategy">
             <div class="service-card-body">
               <span class="service-num">01</span>
               <h2 class="service-title">Brand Strategy</h2>
@@ -157,7 +156,7 @@
           </article>
 
           <!-- Card 02: Web Design -->
-          <article class="service-card">
+          <article class="service-card" data-service-id="02" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="service-modal-02" aria-label="Open detailed specifications for Web Design">
             <div class="service-card-body">
               <span class="service-num">02</span>
               <h2 class="service-title">Web Design</h2>
@@ -177,7 +176,7 @@
           </article>
 
           <!-- Card 03: Web Development -->
-          <article class="service-card">
+          <article class="service-card" data-service-id="03" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="service-modal-03" aria-label="Open detailed specifications for Web Development">
             <div class="service-card-body">
               <span class="service-num">03</span>
               <h2 class="service-title">Web Development</h2>
@@ -197,7 +196,7 @@
           </article>
 
           <!-- Card 04: Motion & Interaction -->
-          <article class="service-card">
+          <article class="service-card" data-service-id="04" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="service-modal-04" aria-label="Open detailed specifications for Motion and Interaction">
             <div class="service-card-body">
               <span class="service-num">04</span>
               <h2 class="service-title">Motion &amp; Interaction</h2>
@@ -217,7 +216,7 @@
           </article>
 
           <!-- Card 05: Content Systems -->
-          <article class="service-card">
+          <article class="service-card" data-service-id="05" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="service-modal-05" aria-label="Open detailed specifications for Content Systems">
             <div class="service-card-body">
               <span class="service-num">05</span>
               <h2 class="service-title">Content Systems</h2>
@@ -237,7 +236,7 @@
           </article>
 
           <!-- Card 06: Ongoing Support -->
-          <article class="service-card">
+          <article class="service-card" data-service-id="06" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="service-modal-06" aria-label="Open detailed specifications for Ongoing Support">
             <div class="service-card-body">
               <span class="service-num">06</span>
               <h2 class="service-title">Ongoing Support</h2>
@@ -417,8 +416,381 @@
           </a>
         </div>
       </div>
+
+      <!-- Upgraded Footer Legal Bar -->
+      <div class="footer-legal-bar">
+        <div class="footer-legal-links">
+          <a href="privacy.html" class="footer-legal-link">Privacy Policy</a>
+          <a href="cookies.html" class="footer-legal-link">Cookie Policy</a>
+          <button type="button" class="footer-legal-link open-cookie-settings" id="openCookieSettings">Cookie settings</button>
+          <a href="legal.html" class="footer-legal-link">Legal Notice / Impressum</a>
+          <a href="terms.html" class="footer-legal-link">Terms of Service</a>
+        </div>
+        <p class="footer-legal-notice">
+          Self-hosted &amp; privacy-engineered. Adheres to EU GDPR and Croatian e-privacy standards.
+        </p>
+      </div>
     </div>
   </footer>
+
+  <!-- ==================== ACCESSIBLE SERVICE MODALS ==================== -->
+  <div class="service-modals-container" id="serviceModalsContainer">
+
+    <!-- Modal 01: Brand Strategy -->
+    <div class="service-modal-backdrop" id="service-modal-01" role="dialog" aria-modal="true" aria-labelledby="modal-title-01" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">01 / 06</span>
+            <span class="service-modal-eyebrow">Studio Capability</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close Brand Strategy modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="2 2 12 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/service-1.png" alt="Brand Strategy architecture visual" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <h2 class="service-modal-title" id="modal-title-01">Brand Strategy</h2>
+              <p class="service-modal-lead">
+                Sharper positioning for a bolder tomorrow. We articulate your core competitive difference and translate it into a distinctive digital presence.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">Market positioning &amp; competitive differentiation audit</li>
+                <li class="service-modal-item">Brand architecture &amp; strategic narrative definition</li>
+                <li class="service-modal-item">Verbal identity, tone of voice &amp; core messaging pillars</li>
+                <li class="service-modal-item">Visual direction moodboarding &amp; artistic territory exploration</li>
+                <li class="service-modal-item">Comprehensive digital brand guidelines specification</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Process &amp; Timeline</div>
+              <p class="service-modal-approach-text">
+                Typically executed across a 3–5 week sprint. Combines stakeholder workshops, European market analysis, and collaborative reviews to produce actionable, enduring brand clarity.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <a href="index.html#contact" class="btn-primary" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about Brand Strategy</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 02: Web Design -->
+    <div class="service-modal-backdrop" id="service-modal-02" role="dialog" aria-modal="true" aria-labelledby="modal-title-02" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">02 / 06</span>
+            <span class="service-modal-eyebrow">Studio Capability</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close Web Design modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="2 2 12 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/service-2.png" alt="Web Design architectural glass visual" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <h2 class="service-modal-title" id="modal-title-02">Web Design</h2>
+              <p class="service-modal-lead">
+                Beautiful, purposeful digital experiences. Editorial art direction rooted in architectural restraint, Swiss typography, and high-impact visual composition.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">Bespoke art direction &amp; typographic hierarchy design</li>
+                <li class="service-modal-item">Complete responsive layout systems (Desktop, Tablet, Mobile)</li>
+                <li class="service-modal-item">Modular design system &amp; component library in Figma</li>
+                <li class="service-modal-item">Micro-interaction mapping &amp; dynamic motion guidelines</li>
+                <li class="service-modal-item">WCAG 2.2 AA accessibility audit &amp; contrast validation</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Process &amp; Timeline</div>
+              <p class="service-modal-approach-text">
+                Typically executed across 4–6 weeks. Begins with structural wireframing, progresses into high-fidelity artistic explorations, and concludes with an engineered Figma design token handoff.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <a href="index.html#contact" class="btn-primary" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about Web Design</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 03: Web Development -->
+    <div class="service-modal-backdrop" id="service-modal-03" role="dialog" aria-modal="true" aria-labelledby="modal-title-03" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">03 / 06</span>
+            <span class="service-modal-eyebrow">Studio Capability</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close Web Development modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="2 2 12 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/service-3.png" alt="Web Development concrete monolith beam visual" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <h2 class="service-modal-title" id="modal-title-03">Web Development</h2>
+              <p class="service-modal-lead">
+                Scalable, high-performance websites that deliver. Zero-bloat frontend engineering with sub-second page loads, self-hosted assets, and strict privacy by design.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">Semantic HTML5, CSS architecture &amp; vanilla JS / modern framework implementation</li>
+                <li class="service-modal-item">Sub-second Core Web Vitals optimization (95+ Lighthouse benchmark)</li>
+                <li class="service-modal-item">Self-hosted fonts &amp; scripts (zero 3rd-party IP leakage on load)</li>
+                <li class="service-modal-item">WCAG 2.2 AA compliant keyboard navigation &amp; screen reader support</li>
+                <li class="service-modal-item">Production deployment, SSL configuration &amp; edge CDN caching</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Process &amp; Timeline</div>
+              <p class="service-modal-approach-text">
+                Typically executed across 4–8 weeks. Built in modular milestones with continuous cross-device browser testing across macOS, iOS, Windows, and Android.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <a href="index.html#contact" class="btn-primary" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about Web Development</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 04: Motion & Interaction -->
+    <div class="service-modal-backdrop" id="service-modal-04" role="dialog" aria-modal="true" aria-labelledby="modal-title-04" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">04 / 06</span>
+            <span class="service-modal-eyebrow">Studio Capability</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close Motion and Interaction modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="2 2 12 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/service-4.png" alt="Motion and Interaction electric blue curve visual" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <h2 class="service-modal-title" id="modal-title-04">Motion &amp; Interaction</h2>
+              <p class="service-modal-lead">
+                Bring ideas to life through movement. Choreographed kinetic interactions, SVG trajectory animations, and WebGL accents built to enchant without sacrificing performance.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">Scroll-driven narrative choreography &amp; timeline transitions</li>
+                <li class="service-modal-item">Mathematical Bézier vector path curves &amp; traveling tracers</li>
+                <li class="service-modal-item">GPU-accelerated transforms targeting a steady 60fps frame rate</li>
+                <li class="service-modal-item">Strict prefers-reduced-motion fallback states for accessibility</li>
+                <li class="service-modal-item">Custom brand preloader experiences &amp; specular glints</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Process &amp; Timeline</div>
+              <p class="service-modal-approach-text">
+                Typically executed across 2–4 weeks (or integrated directly into Web Development sprints). Rigorously benchmarked on mobile GPUs to guarantee zero thermal throttling or stutter.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <a href="index.html#contact" class="btn-primary" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about Motion &amp; Interaction</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 05: Content Systems -->
+    <div class="service-modal-backdrop" id="service-modal-05" role="dialog" aria-modal="true" aria-labelledby="modal-title-05" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">05 / 06</span>
+            <span class="service-modal-eyebrow">Studio Capability</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close Content Systems modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="2 2 12 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/service-5.png" alt="Content Systems layered translucent glass visual" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <h2 class="service-modal-title" id="modal-title-05">Content Systems</h2>
+              <p class="service-modal-lead">
+                Flexible content for growing brands. Structured content architectures and headless CMS integration that empower marketing teams to publish effortlessly.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">Headless CMS architecture (Sanity, Storyblok, Strapi)</li>
+                <li class="service-modal-item">Structured editorial taxonomy &amp; modular page builder models</li>
+                <li class="service-modal-item">Multi-language localization schemas (Croatian, English, German)</li>
+                <li class="service-modal-item">Automated responsive media and picture element pipelines</li>
+                <li class="service-modal-item">Editor workflow documentation &amp; studio training handover</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Process &amp; Timeline</div>
+              <p class="service-modal-approach-text">
+                Typically executed across 3–5 weeks. Focuses on developer velocity and author convenience, ensuring your editorial team never breaks layout consistency.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <a href="index.html#contact" class="btn-primary" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about Content Systems</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 06: Ongoing Support -->
+    <div class="service-modal-backdrop" id="service-modal-06" role="dialog" aria-modal="true" aria-labelledby="modal-title-06" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">06 / 06</span>
+            <span class="service-modal-eyebrow">Studio Capability</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close Ongoing Support modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="2 2 12 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/service-6.jpg" alt="Ongoing Support alpine mountain mist visual" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <h2 class="service-modal-title" id="modal-title-06">Ongoing Support</h2>
+              <p class="service-modal-lead">
+                A long-term partner for what's next. Retained design and engineering bandwidth to continuously evolve, optimize, and safeguard your digital presence.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">Dedicated monthly design &amp; frontend engineering bandwidth</li>
+                <li class="service-modal-item">Continuous performance, Core Web Vitals &amp; uptime monitoring</li>
+                <li class="service-modal-item">Regular accessibility &amp; European privacy compliance audits</li>
+                <li class="service-modal-item">Iterative feature launches, landing pages &amp; A/B optimizations</li>
+                <li class="service-modal-item">Priority SLA response times with direct Slack / email channel</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Engagement Model</div>
+              <p class="service-modal-approach-text">
+                Monthly retained partnership tailored to your studio or business velocity. Seamless extension of your internal team with transparent sprint reporting.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <a href="index.html#contact" class="btn-primary" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about Ongoing Support</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
   <script src="script.js"></script>
 </body>
