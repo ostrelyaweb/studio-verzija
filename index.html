@@ -18,7 +18,7 @@
 
   <!-- Self-Hosted Typography & Local GSAP (Zero 3rd-party network requests on initial load) -->
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2.2.1" />
   <script src="assets/js/gsap.min.js"></script>
   <style id="studioLoaderStyles">
     /* ==========================================================================
@@ -662,7 +662,7 @@
         <div class="work-grid">
 
           <!-- Card 01: S. / A Brighter Tomorrow -->
-          <article class="project-card card-dark" data-project-id="01" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-01" aria-label="Open detailed case study for A Brighter Tomorrow">
+          <article class="project-card card-dark" data-project-id="01" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-01" aria-label="Open detailed case study for A Brighter Tomorrow" onclick="openProjectModal('01')">
             <div class="card-inner-link">
               <div class="card-media">
                 <img src="assets/project-1.jpg" alt="A Brighter Tomorrow" class="card-image" loading="lazy" />
@@ -694,7 +694,7 @@
           </article>
 
           <!-- Card 02: V. / Human Progress Amplified -->
-          <article class="project-card card-light" data-project-id="02" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-02" aria-label="Open detailed case study for Human Progress Amplified">
+          <article class="project-card card-light" data-project-id="02" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-02" aria-label="Open detailed case study for Human Progress Amplified" onclick="openProjectModal('02')">
             <div class="card-inner-link">
               <div class="card-media">
                 <img src="assets/project-2.jpg" alt="Human Progress Amplified" class="card-image" loading="lazy" />
@@ -726,7 +726,7 @@
           </article>
 
           <!-- Card 03: K. / Beyond Boundaries -->
-          <article class="project-card card-dark" data-project-id="03" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-03" aria-label="Open detailed case study for Beyond Boundaries">
+          <article class="project-card card-dark" data-project-id="03" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-03" aria-label="Open detailed case study for Beyond Boundaries" onclick="openProjectModal('03')">
             <div class="card-inner-link">
               <div class="card-media">
                 <img src="assets/project-3.jpg" alt="Beyond Boundaries" class="card-image" loading="lazy" />
@@ -758,7 +758,7 @@
           </article>
 
           <!-- Card 04: ○ / Built for What's Next -->
-          <article class="project-card card-light" data-project-id="04" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-04" aria-label="Open detailed case study for Built for What's Next">
+          <article class="project-card card-light" data-project-id="04" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-04" aria-label="Open detailed case study for Built for What's Next" onclick="openProjectModal('04')">
             <div class="card-inner-link">
               <div class="card-media">
                 <img src="assets/project-4.jpg" alt="Built for What's Next" class="card-image" loading="lazy" />
@@ -1239,14 +1239,14 @@
   <div class="project-modals-container" id="projectModalsContainer">
 
     <!-- Project Modal 01: S. — A Brighter Tomorrow -->
-    <div class="service-modal-backdrop" id="project-modal-01" role="dialog" aria-modal="true" aria-labelledby="project-title-01" aria-hidden="true">
+    <div class="service-modal-backdrop" id="project-modal-01" role="dialog" aria-modal="true" aria-labelledby="project-title-01" aria-hidden="true" onclick="if(event.target===this)closeProjectModal('01')">
       <div class="service-modal-dialog">
         <div class="service-modal-header">
           <div class="service-modal-brand">
             <span class="service-modal-num">PROJECT 01 / 04</span>
             <span class="service-modal-eyebrow">Brand Platform &bull; CleanTech</span>
           </div>
-          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)">
+          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)" onclick="closeProjectModal('01')">
             <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="2" y1="12" x2="12" y2="2"></line>
               <polyline points="2 2 12 12"></polyline>
@@ -1295,7 +1295,7 @@
             </div>
 
             <div class="service-modal-action-row">
-              <button type="button" class="btn-primary btn-inquire-project" data-service-target="brand-strategy" style="padding: 0.85rem 1.85rem;">
+              <button type="button" class="btn-primary btn-inquire-project" data-service-target="brand-strategy" onclick="inquireProject('brand-strategy', '01')" style="padding: 0.85rem 1.85rem;">
                 <span>Inquire about a similar project</span>
                 <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="2" y1="12" x2="12" y2="2"></line>
@@ -1312,17 +1312,17 @@
     </div>
 
     <!-- Project Modal 02: V. — Human Progress Amplified -->
-    <div class="service-modal-backdrop" id="project-modal-02" role="dialog" aria-modal="true" aria-labelledby="project-title-02" aria-hidden="true">
+    <div class="service-modal-backdrop" id="project-modal-02" role="dialog" aria-modal="true" aria-labelledby="project-title-02" aria-hidden="true" onclick="if(event.target===this)closeProjectModal('02')">
       <div class="service-modal-dialog">
         <div class="service-modal-header">
           <div class="service-modal-brand">
             <span class="service-modal-num">PROJECT 02 / 04</span>
             <span class="service-modal-eyebrow">Product Website &bull; HealthTech &amp; AI</span>
           </div>
-          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)">
+          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)" onclick="closeProjectModal('02')">
             <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="2" y1="12" x2="12" y2="2"></line>
-              <polyline points="4 2 12 2 12 10"></polyline>
+              <polyline points="2 2 12 12"></polyline>
             </svg>
           </button>
         </div>
@@ -1368,7 +1368,7 @@
             </div>
 
             <div class="service-modal-action-row">
-              <button type="button" class="btn-primary btn-inquire-project" data-service-target="web-development" style="padding: 0.85rem 1.85rem;">
+              <button type="button" class="btn-primary btn-inquire-project" data-service-target="web-development" onclick="inquireProject('web-development', '02')" style="padding: 0.85rem 1.85rem;">
                 <span>Inquire about a similar project</span>
                 <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="2" y1="12" x2="12" y2="2"></line>
@@ -1385,14 +1385,14 @@
     </div>
 
     <!-- Project Modal 03: K. — Beyond Boundaries -->
-    <div class="service-modal-backdrop" id="project-modal-03" role="dialog" aria-modal="true" aria-labelledby="project-title-03" aria-hidden="true">
+    <div class="service-modal-backdrop" id="project-modal-03" role="dialog" aria-modal="true" aria-labelledby="project-title-03" aria-hidden="true" onclick="if(event.target===this)closeProjectModal('03')">
       <div class="service-modal-dialog">
         <div class="service-modal-header">
           <div class="service-modal-brand">
             <span class="service-modal-num">PROJECT 03 / 04</span>
             <span class="service-modal-eyebrow">Campaign Website &bull; Luxury Horology</span>
           </div>
-          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)">
+          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)" onclick="closeProjectModal('03')">
             <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="2" y1="12" x2="12" y2="2"></line>
               <polyline points="2 2 12 12"></polyline>
@@ -1441,7 +1441,7 @@
             </div>
 
             <div class="service-modal-action-row">
-              <button type="button" class="btn-primary btn-inquire-project" data-service-target="motion-interaction" style="padding: 0.85rem 1.85rem;">
+              <button type="button" class="btn-primary btn-inquire-project" data-service-target="motion-interaction" onclick="inquireProject('motion-interaction', '03')" style="padding: 0.85rem 1.85rem;">
                 <span>Inquire about a similar project</span>
                 <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="2" y1="12" x2="12" y2="2"></line>
@@ -1458,14 +1458,14 @@
     </div>
 
     <!-- Project Modal 04: ○ — Built for What’s Next -->
-    <div class="service-modal-backdrop" id="project-modal-04" role="dialog" aria-modal="true" aria-labelledby="project-title-04" aria-hidden="true">
+    <div class="service-modal-backdrop" id="project-modal-04" role="dialog" aria-modal="true" aria-labelledby="project-title-04" aria-hidden="true" onclick="if(event.target===this)closeProjectModal('04')">
       <div class="service-modal-dialog">
         <div class="service-modal-header">
           <div class="service-modal-brand">
             <span class="service-modal-num">PROJECT 04 / 04</span>
             <span class="service-modal-eyebrow">Brand &amp; Web &bull; Frontier Venture Capital</span>
           </div>
-          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)">
+          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)" onclick="closeProjectModal('04')">
             <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="2" y1="12" x2="12" y2="2"></line>
               <polyline points="2 2 12 12"></polyline>
@@ -1514,7 +1514,7 @@
             </div>
 
             <div class="service-modal-action-row">
-              <button type="button" class="btn-primary btn-inquire-project" data-service-target="full-scope" style="padding: 0.85rem 1.85rem;">
+              <button type="button" class="btn-primary btn-inquire-project" data-service-target="full-scope" onclick="inquireProject('full-scope', '04')" style="padding: 0.85rem 1.85rem;">
                 <span>Inquire about a similar project</span>
                 <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="2" y1="12" x2="12" y2="2"></line>
@@ -1532,6 +1532,50 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Fail-safe global modal controller (resilient to browser caching and script loading orders)
+    window.openProjectModal = function(id) {
+      var modal = document.getElementById('project-modal-' + id);
+      if (!modal) return;
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      var closeBtn = modal.querySelector('.service-modal-close');
+      if (closeBtn) setTimeout(function() { closeBtn.focus(); }, 60);
+    };
+
+    window.closeProjectModal = function(id) {
+      var modal = typeof id === 'string' ? document.getElementById('project-modal-' + id) : id;
+      if (!modal) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      var card = document.querySelector('.project-card[data-project-id="' + (typeof id === 'string' ? id : '') + '"]');
+      if (card) setTimeout(function() { card.focus(); }, 50);
+    };
+
+    window.inquireProject = function(serviceTarget, modalId) {
+      if (modalId) {
+        window.closeProjectModal(modalId);
+      } else {
+        var active = document.querySelector('.service-modal-backdrop.active');
+        if (active) window.closeProjectModal(active);
+      }
+      var inquiryWrap = document.getElementById('inquiryFormWrap') || document.getElementById('contact');
+      if (inquiryWrap) {
+        inquiryWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      var formService = document.getElementById('formService');
+      if (formService && serviceTarget) {
+        formService.value = serviceTarget;
+        formService.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      var formName = document.getElementById('formName');
+      if (formName) {
+        setTimeout(function() { formName.focus(); }, 350);
+      }
+    };
+  </script>
+  <script src="script.js?v=2.2.1"></script>
 </body>
 </html>

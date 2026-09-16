@@ -3,7 +3,7 @@
  * Restrained, high-performance, accessible JavaScript
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initStudioApp() {
   // 1. Sticky Header Scroll Treatment
   const siteHeader = document.querySelector('.site-header');
   const handleScroll = () => {
@@ -43,18 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 3. Subtle Hero Parallax (Maximum 6px, respecting prefers-reduced-motion)
-  const heroEmblem = document.querySelector('.emblem-stage');
+  const heroSection = document.querySelector('.hero');
+  const heroWordmark = document.querySelector('.hero-wordmark');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (heroEmblem && !prefersReducedMotion) {
+  if (heroSection && heroWordmark && !prefersReducedMotion) {
     let ticking = false;
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener('scroll', () => {
       if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const { innerWidth, innerHeight } = window;
-          const xOffset = ((e.clientX / innerWidth) - 0.5) * 8; // max ±4px
-          const yOffset = ((e.clientY / innerHeight) - 0.5) * 8; // max ±4px
-          heroEmblem.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
+        requestAnimationFrame(() => {
+          const scrollPos = window.scrollY;
+          if (scrollPos < window.innerHeight) {
+            heroWordmark.style.transform = `translate3d(0, ${scrollPos * 0.04}px, 0)`;
+          }
           ticking = false;
         });
         ticking = true;
@@ -91,7 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 10. Accessible Project Quick-View Modals (index.html)
   initProjectModals();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initStudioApp);
+} else {
+  initStudioApp();
+}
 
 function initProcessTrajectory() {
   const processSection = document.getElementById('process');
@@ -1399,6 +1406,63 @@ function initProjectModals() {
       }, 50);
     }
   }
+
+  // Global helper bindings so inline onclick attributes and external triggers work flawlessly
+  window.openProjectModal = function(projectId) {
+    const card = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+    const targetModal = document.getElementById(`project-modal-${projectId}`);
+    if (targetModal) {
+      openModal(targetModal, card);
+    }
+  };
+
+  window.closeProjectModal = function(projectId) {
+    const modal = typeof projectId === 'string'
+      ? document.getElementById(`project-modal-${projectId}`)
+      : projectId;
+    if (modal) {
+      closeModal(modal, true);
+    }
+  };
+
+  window.inquireProject = function(serviceTarget, modalId) {
+    const modal = typeof modalId === 'string'
+      ? document.getElementById(`project-modal-${modalId}`)
+      : modalId;
+    if (modal) {
+      closeModal(modal, false);
+    } else if (activeModal) {
+      closeModal(activeModal, false);
+    }
+
+    const inquiryWrap = document.getElementById('inquiryFormWrap') || document.getElementById('contact');
+    if (inquiryWrap) {
+      inquiryWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    const formService = document.getElementById('formService');
+    if (formService && serviceTarget) {
+      formService.value = serviceTarget;
+      formService.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    const formName = document.getElementById('formName');
+    if (formName) {
+      setTimeout(() => {
+        formName.focus();
+      }, 350);
+    }
+  };
+
+  // Delegated document-level click listener for maximum resilience
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.project-card[data-project-id]');
+    if (card) {
+      e.preventDefault();
+      const projectId = card.getAttribute('data-project-id');
+      window.openProjectModal(projectId);
+    }
+  });
 }
 
 
