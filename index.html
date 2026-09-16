@@ -1055,103 +1055,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Privacy-Engineered Project Inquiry Form -->
-        <div class="inquiry-form-card" id="inquiryFormWrap" aria-labelledby="inquiryHeading">
-          <div class="inquiry-form-header">
-            <div class="editorial-eyebrow" style="margin-bottom: 0.25rem;">
-              <span class="eyebrow-text">DIRECT INQUIRY</span>
-              <span class="eyebrow-rule" aria-hidden="true"></span>
-            </div>
-            <h3 class="inquiry-form-title" id="inquiryHeading">Initiate a conversation</h3>
-            <p class="inquiry-form-sub">
-              Share details about your upcoming launch, brand initiative, or digital product. We respect your data and adhere to strict European privacy practices.
-            </p>
-          </div>
-
-          <form class="inquiry-form" id="inquiryForm" novalidate>
-            <!-- Honeypot for spam mitigation without invasive 3rd-party CAPTCHA -->
-            <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
-              <label for="formWebsite">Leave this field blank</label>
-              <input type="text" id="formWebsite" name="website" tabindex="-1" autocomplete="off" />
-              <input type="hidden" id="formTimestamp" name="timestamp" value="" />
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="formName" class="form-label">
-                  Your Name <span class="label-req" aria-hidden="true">*</span>
-                </label>
-                <input type="text" id="formName" name="name" class="form-input" placeholder="e.g. Elena Varga" required autocomplete="name" aria-required="true" aria-describedby="formNameError" />
-                <span class="form-error" id="formNameError" role="alert" style="display: none; color: #9C1A1A; font-size: 0.75rem;"></span>
-              </div>
-
-              <div class="form-group">
-                <label for="formEmail" class="form-label">
-                  Work Email <span class="label-req" aria-hidden="true">*</span>
-                </label>
-                <input type="email" id="formEmail" name="email" class="form-input" placeholder="elena@company.com" required autocomplete="email" aria-required="true" aria-describedby="formEmailError" />
-                <span class="form-error" id="formEmailError" role="alert" style="display: none; color: #9C1A1A; font-size: 0.75rem;"></span>
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="formCompany" class="form-label">
-                  Organization / Studio <span class="label-opt">(optional)</span>
-                </label>
-                <input type="text" id="formCompany" name="company" class="form-input" placeholder="e.g. Varga Design Studio" autocomplete="organization" />
-              </div>
-
-              <div class="form-group">
-                <label for="formService" class="form-label">
-                  Service Interest <span class="label-opt">(optional)</span>
-                </label>
-                <select id="formService" name="service" class="form-select">
-                  <option value="">Select an area of interest...</option>
-                  <option value="brand-strategy">Brand Strategy</option>
-                  <option value="web-design">Web Design</option>
-                  <option value="web-development">Web Development</option>
-                  <option value="motion-interaction">Motion &amp; Interaction</option>
-                  <option value="content-systems">Content Systems</option>
-                  <option value="ongoing-support">Ongoing Retained Support</option>
-                  <option value="full-scope">Full-Scope Digital Flagship</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="formMessage" class="form-label">
-                Project Overview <span class="label-req" aria-hidden="true">*</span>
-              </label>
-              <textarea id="formMessage" name="message" class="form-textarea" placeholder="Describe your objectives, scope, timeline, or any specific challenges..." required aria-required="true" aria-describedby="formMessageError"></textarea>
-              <span class="form-error" id="formMessageError" role="alert" style="display: none; color: #9C1A1A; font-size: 0.75rem;"></span>
-            </div>
-
-            <div class="form-checkbox-group">
-              <input type="checkbox" id="formConsentMarketing" name="consentMarketing" class="form-checkbox" />
-              <label for="formConsentMarketing" class="form-checkbox-text">
-                I agree to occasionally receive editorial updates and architectural insights from Ostrelya. (Optional, can be revoked at any time).
-              </label>
-            </div>
-
-            <p class="form-privacy-notice">
-              Data collected is processed solely to respond to your project request under GDPR Art. 6(1)(b)/(f). We never sell or share information with third parties. Learn more in our <a href="privacy.html">Privacy Notice</a>.
-            </p>
-
-            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-
-            <div>
-              <button type="submit" class="btn-primary" id="formSubmitBtn" style="padding: 0.9rem 2.25rem; font-size: 0.875rem;">
-                <span>Send project inquiry</span>
-                <svg class="icon-arrow" viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="2" y1="12" x2="12" y2="2"></line>
-                  <polyline points="4 2 12 2 12 10"></polyline>
-                </svg>
-              </button>
-            </div>
-          </form>
-        </div>
       </div>
     </section>
 
@@ -1295,13 +1198,13 @@
             </div>
 
             <div class="service-modal-action-row">
-              <button type="button" class="btn-primary btn-inquire-project" data-service-target="brand-strategy" onclick="inquireProject('brand-strategy', '01')" style="padding: 0.85rem 1.85rem;">
+              <a href="mailto:hello@ostrelya.com?subject=Project%20Inquiry:%20Solarium%20Energy" class="btn-primary" style="padding: 0.85rem 1.85rem; text-decoration: none;">
                 <span>Inquire about a similar project</span>
                 <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="2" y1="12" x2="12" y2="2"></line>
                   <polyline points="4 2 12 2 12 10"></polyline>
                 </svg>
-              </button>
+              </a>
               <a href="mailto:hello@ostrelya.com?subject=Confidential%20Deck%20Request:%20Solarium%20Energy" class="footer-legal-link" style="font-size: 0.8125rem; text-decoration: underline;">
                 Request case study deck ↗
               </a>
@@ -1368,13 +1271,13 @@
             </div>
 
             <div class="service-modal-action-row">
-              <button type="button" class="btn-primary btn-inquire-project" data-service-target="web-development" onclick="inquireProject('web-development', '02')" style="padding: 0.85rem 1.85rem;">
+              <a href="mailto:hello@ostrelya.com?subject=Project%20Inquiry:%20Human%20Progress%20Amplified" class="btn-primary" style="padding: 0.85rem 1.85rem; text-decoration: none;">
                 <span>Inquire about a similar project</span>
                 <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="2" y1="12" x2="12" y2="2"></line>
                   <polyline points="4 2 12 2 12 10"></polyline>
                 </svg>
-              </button>
+              </a>
               <a href="mailto:hello@ostrelya.com?subject=Confidential%20Deck%20Request:%20Vanguard%20Diagnostics" class="footer-legal-link" style="font-size: 0.8125rem; text-decoration: underline;">
                 Request clinical case deck ↗
               </a>
@@ -1441,13 +1344,13 @@
             </div>
 
             <div class="service-modal-action-row">
-              <button type="button" class="btn-primary btn-inquire-project" data-service-target="motion-interaction" onclick="inquireProject('motion-interaction', '03')" style="padding: 0.85rem 1.85rem;">
+              <a href="mailto:hello@ostrelya.com?subject=Project%20Inquiry:%20Beyond%20Boundaries" class="btn-primary" style="padding: 0.85rem 1.85rem; text-decoration: none;">
                 <span>Inquire about a similar project</span>
                 <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="2" y1="12" x2="12" y2="2"></line>
                   <polyline points="4 2 12 2 12 10"></polyline>
                 </svg>
-              </button>
+              </a>
               <a href="mailto:hello@ostrelya.com?subject=Confidential%20Deck%20Request:%20Kronos%20Horology" class="footer-legal-link" style="font-size: 0.8125rem; text-decoration: underline;">
                 Request campaign deck ↗
               </a>
@@ -1514,13 +1417,13 @@
             </div>
 
             <div class="service-modal-action-row">
-              <button type="button" class="btn-primary btn-inquire-project" data-service-target="full-scope" onclick="inquireProject('full-scope', '04')" style="padding: 0.85rem 1.85rem;">
+              <a href="mailto:hello@ostrelya.com?subject=Project%20Inquiry:%20Orbit%20Capital" class="btn-primary" style="padding: 0.85rem 1.85rem; text-decoration: none;">
                 <span>Inquire about a similar project</span>
                 <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="2" y1="12" x2="12" y2="2"></line>
                   <polyline points="4 2 12 2 12 10"></polyline>
                 </svg>
-              </button>
+              </a>
               <a href="mailto:hello@ostrelya.com?subject=Confidential%20Deck%20Request:%20Orbit%20Capital" class="footer-legal-link" style="font-size: 0.8125rem; text-decoration: underline;">
                 Request venture deck ↗
               </a>
