@@ -88,6 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 9. Project Inquiry Form Controller (index.html)
   initInquiryForm();
+
+  // 10. Accessible Project Quick-View Modals (index.html)
+  initProjectModals();
 });
 
 function initProcessTrajectory() {
@@ -1265,5 +1268,138 @@ function initInquiryForm() {
     statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }
+
+/* ==========================================================================
+   10. ACCESSIBLE PROJECT QUICK-VIEW MODALS CONTROLLER (index.html)
+   Near-fullscreen architectural case study dialogs with WCAG 2.2 focus management
+   ========================================================================== */
+function initProjectModals() {
+  const cards = document.querySelectorAll('.project-card[data-project-id]');
+  if (!cards.length) return;
+
+  let activeModal = null;
+  let activeTrigger = null;
+
+  cards.forEach(card => {
+    const projectId = card.getAttribute('data-project-id');
+    const targetModal = document.getElementById(`project-modal-${projectId}`);
+    if (!targetModal) return;
+
+    const handleOpen = (e) => {
+      e.preventDefault();
+      openModal(targetModal, card);
+    };
+
+    card.addEventListener('click', handleOpen);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(targetModal, card);
+      }
+    });
+  });
+
+  // Modal close handlers & focus trap
+  const allProjectModals = document.querySelectorAll('#projectModalsContainer .service-modal-backdrop');
+  allProjectModals.forEach(modal => {
+    const closeBtn = modal.querySelector('.service-modal-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => closeModal(modal));
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal(modal);
+      }
+    });
+
+    modal.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    // Inquire button pre-fill & smooth scroll handler
+    const inquireBtn = modal.querySelector('.btn-inquire-project');
+    if (inquireBtn) {
+      inquireBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const serviceTarget = inquireBtn.getAttribute('data-service-target');
+
+        // Close modal without refocusing back to the project card
+        closeModal(modal, false);
+
+        // Smooth scroll to inquiry form
+        const inquiryWrap = document.getElementById('inquiryFormWrap') || document.getElementById('contact');
+        if (inquiryWrap) {
+          inquiryWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Pre-select service in dropdown
+        const formService = document.getElementById('formService');
+        if (formService && serviceTarget) {
+          formService.value = serviceTarget;
+          formService.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        // Focus the name field in the form
+        const formName = document.getElementById('formName');
+        if (formName) {
+          setTimeout(() => {
+            formName.focus();
+          }, 350);
+        }
+      });
+    }
+  });
+
+  // Global Escape key support for active project modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && activeModal) {
+      closeModal(activeModal, true);
+    }
+  });
+
+  function openModal(modal, trigger) {
+    activeModal = modal;
+    activeTrigger = trigger;
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    const closeBtn = modal.querySelector('.service-modal-close');
+    if (closeBtn) {
+      setTimeout(() => closeBtn.focus(), 60);
+    }
+  }
+
+  function closeModal(modal, restoreFocus = true) {
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    const triggerToFocus = activeTrigger;
+    activeModal = null;
+    activeTrigger = null;
+
+    if (restoreFocus && triggerToFocus && typeof triggerToFocus.focus === 'function') {
+      setTimeout(() => {
+        triggerToFocus.focus();
+      }, 50);
+    }
+  }
+}
+
 
 

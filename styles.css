@@ -472,11 +472,18 @@ ul, ol {
   background-color: #121316;
   box-shadow: 0 4px 16px rgba(8, 9, 12, 0.04);
   transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+  cursor: pointer;
+  user-select: none;
 }
 
 .project-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 16px 36px rgba(8, 9, 12, 0.09);
+}
+
+.project-card:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 4px;
 }
 
 .card-inner-link {
@@ -2589,7 +2596,7 @@ body.loader-active {
   background-color: rgba(8, 9, 12, 0.55);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  z-index: 10000;
+  z-index: 100000;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s var(--ease-out-expo);
@@ -2780,7 +2787,7 @@ body.loader-active {
   background-color: rgba(8, 9, 12, 0.65);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  z-index: 10000;
+  z-index: 100005;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s var(--ease-out-expo);

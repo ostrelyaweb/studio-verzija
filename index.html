@@ -662,8 +662,8 @@
         <div class="work-grid">
 
           <!-- Card 01: S. / A Brighter Tomorrow -->
-          <article class="project-card card-dark" data-project="01">
-            <a href="#contact" class="card-inner-link" aria-label="View project A Brighter Tomorrow">
+          <article class="project-card card-dark" data-project-id="01" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-01" aria-label="Open detailed case study for A Brighter Tomorrow">
+            <div class="card-inner-link">
               <div class="card-media">
                 <img src="assets/project-1.jpg" alt="A Brighter Tomorrow" class="card-image" loading="lazy" />
                 <div class="card-overlay" aria-hidden="true"></div>
@@ -690,12 +690,12 @@
                   </svg>
                 </div>
               </div>
-            </a>
+            </div>
           </article>
 
           <!-- Card 02: V. / Human Progress Amplified -->
-          <article class="project-card card-light" data-project="02">
-            <a href="#contact" class="card-inner-link" aria-label="View project Human Progress Amplified">
+          <article class="project-card card-light" data-project-id="02" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-02" aria-label="Open detailed case study for Human Progress Amplified">
+            <div class="card-inner-link">
               <div class="card-media">
                 <img src="assets/project-2.jpg" alt="Human Progress Amplified" class="card-image" loading="lazy" />
                 <div class="card-overlay" aria-hidden="true"></div>
@@ -722,12 +722,12 @@
                   </svg>
                 </div>
               </div>
-            </a>
+            </div>
           </article>
 
           <!-- Card 03: K. / Beyond Boundaries -->
-          <article class="project-card card-dark" data-project="03">
-            <a href="#contact" class="card-inner-link" aria-label="View project Beyond Boundaries">
+          <article class="project-card card-dark" data-project-id="03" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-03" aria-label="Open detailed case study for Beyond Boundaries">
+            <div class="card-inner-link">
               <div class="card-media">
                 <img src="assets/project-3.jpg" alt="Beyond Boundaries" class="card-image" loading="lazy" />
                 <div class="card-overlay" aria-hidden="true"></div>
@@ -754,12 +754,12 @@
                   </svg>
                 </div>
               </div>
-            </a>
+            </div>
           </article>
 
           <!-- Card 04: ○ / Built for What's Next -->
-          <article class="project-card card-light" data-project="04">
-            <a href="#contact" class="card-inner-link" aria-label="View project Built for What's Next">
+          <article class="project-card card-light" data-project-id="04" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-modal-04" aria-label="Open detailed case study for Built for What's Next">
+            <div class="card-inner-link">
               <div class="card-media">
                 <img src="assets/project-4.jpg" alt="Built for What's Next" class="card-image" loading="lazy" />
                 <div class="card-overlay" aria-hidden="true"></div>
@@ -786,7 +786,7 @@
                   </svg>
                 </div>
               </div>
-            </a>
+            </div>
           </article>
 
         </div>
@@ -1234,6 +1234,303 @@
       </div>
     </div>
   </footer>
+
+  <!-- ==================== EDITORIAL PROJECT MODALS ==================== -->
+  <div class="project-modals-container" id="projectModalsContainer">
+
+    <!-- Project Modal 01: S. — A Brighter Tomorrow -->
+    <div class="service-modal-backdrop" id="project-modal-01" role="dialog" aria-modal="true" aria-labelledby="project-title-01" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">PROJECT 01 / 04</span>
+            <span class="service-modal-eyebrow">Brand Platform &bull; CleanTech</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="2 2 12 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/project-1.jpg" alt="A Brighter Tomorrow — CleanTech Renewable Infrastructure" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <div class="editorial-eyebrow" style="margin-bottom: 0.5rem;">
+                <span class="eyebrow-text">SOLARIUM ENERGY &mdash; ZURICH / STOCKHOLM</span>
+                <span class="eyebrow-rule" aria-hidden="true"></span>
+              </div>
+              <h2 class="service-modal-title" id="project-title-01">A Brighter Tomorrow</h2>
+              <p class="service-modal-lead">
+                Repositioning a European clean-energy infrastructure pioneer into an inspiring, tier-one global brand commanding trust from institutional investors and European municipalities.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">The Challenge &amp; Execution</div>
+              <p class="service-modal-approach-text" style="font-size: 0.9375rem; line-height: 1.65; color: var(--text-secondary); margin-bottom: 1rem;">
+                Solarium required an architectural identity transition: moving away from generic technical contractor tropes toward an elevated European aesthetic. We engineered an editorial design system utilizing high-contrast Swiss typography, spacious canvases, and a custom WebGL solar horizon wave shader that renders seamlessly across devices.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">Global Brand Architecture &amp; Investor Positioning Narrative</li>
+                <li class="service-modal-item">Complete Design System &amp; Design Token Library in Figma</li>
+                <li class="service-modal-item">Next.js Headless Platform with Custom GLSL Wave Shader</li>
+                <li class="service-modal-item">Sub-second Core Web Vitals (0.62s FCP benchmark)</li>
+                <li class="service-modal-item">Privacy by Design with Zero 3rd-Party Tracking</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Technical Benchmark</div>
+              <p class="service-modal-approach-text">
+                100/100 Lighthouse Performance &bull; Sub-second global edge delivery &bull; Zero client-side bloat.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <button type="button" class="btn-primary btn-inquire-project" data-service-target="brand-strategy" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about a similar project</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </button>
+              <a href="mailto:hello@ostrelya.com?subject=Confidential%20Deck%20Request:%20Solarium%20Energy" class="footer-legal-link" style="font-size: 0.8125rem; text-decoration: underline;">
+                Request case study deck ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Modal 02: V. — Human Progress Amplified -->
+    <div class="service-modal-backdrop" id="project-modal-02" role="dialog" aria-modal="true" aria-labelledby="project-title-02" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">PROJECT 02 / 04</span>
+            <span class="service-modal-eyebrow">Product Website &bull; HealthTech &amp; AI</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="4 2 12 2 12 10"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/project-2.jpg" alt="Human Progress Amplified — Autonomous Medical Diagnostics" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <div class="editorial-eyebrow" style="margin-bottom: 0.5rem;">
+                <span class="eyebrow-text">VANGUARD MEDICAL AI &mdash; MUNICH / LONDON</span>
+                <span class="eyebrow-rule" aria-hidden="true"></span>
+              </div>
+              <h2 class="service-modal-title" id="project-title-02">Human Progress Amplified</h2>
+              <p class="service-modal-lead">
+                Demystifying autonomous clinical telemetry for top European hospital networks while preserving clinical gravity, scientific elegance, and uncompromising software velocity.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">The Challenge &amp; Execution</div>
+              <p class="service-modal-approach-text" style="font-size: 0.9375rem; line-height: 1.65; color: var(--text-secondary); margin-bottom: 1rem;">
+                Vanguard's machine-learning platform processes gigabytes of medical imaging telemetry. We structured an interface anchored in monochrome architectural calm, accented by precision electric-blue data indicators. Designed to allow clinical directors and surgeons to inspect volumetric 3D diagnostic sensors in real time directly within the browser.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">3D Volumetric Diagnostic Sensor Demonstrator (Three.js / WebGL)</li>
+                <li class="service-modal-item">WCAG 2.2 AA Accessible Clinical Data Charts &amp; Screen Reader Mapping</li>
+                <li class="service-modal-item">Modular Design Token System with High-Density Layout Modes</li>
+                <li class="service-modal-item">Headless CMS Integration for Clinical Whitepapers &amp; Trials</li>
+                <li class="service-modal-item">Sub-second Edge Deployment Across European Health Zones</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Engineering Metric</div>
+              <p class="service-modal-approach-text">
+                Steady 60fps WebGL execution on standard clinical tablets with GPU-saving battery throttling.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <button type="button" class="btn-primary btn-inquire-project" data-service-target="web-development" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about a similar project</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </button>
+              <a href="mailto:hello@ostrelya.com?subject=Confidential%20Deck%20Request:%20Vanguard%20Diagnostics" class="footer-legal-link" style="font-size: 0.8125rem; text-decoration: underline;">
+                Request clinical case deck ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Modal 03: K. — Beyond Boundaries -->
+    <div class="service-modal-backdrop" id="project-modal-03" role="dialog" aria-modal="true" aria-labelledby="project-title-03" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">PROJECT 03 / 04</span>
+            <span class="service-modal-eyebrow">Campaign Website &bull; Luxury Horology</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="2 2 12 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/project-3.jpg" alt="Beyond Boundaries — Luxury Swiss Watchmaking Campaign" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <div class="editorial-eyebrow" style="margin-bottom: 0.5rem;">
+                <span class="eyebrow-text">KRONOS HOROLOGY &mdash; GENEVA, SWITZERLAND</span>
+                <span class="eyebrow-rule" aria-hidden="true"></span>
+              </div>
+              <h2 class="service-modal-title" id="project-title-03">Beyond Boundaries</h2>
+              <p class="service-modal-lead">
+                An asymmetric, kinetic digital showroom celebrating the launch of a limited-edition mechanical chronometer, capturing the tactile microscopic tolerances of luxury Swiss horology.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">The Challenge &amp; Execution</div>
+              <p class="service-modal-approach-text" style="font-size: 0.9375rem; line-height: 1.65; color: var(--text-secondary); margin-bottom: 1rem;">
+                To unveil a hand-finished tourbillon timepiece limited to 50 numbered editions worldwide, Kronos needed a sensory experience that reflected the horological precision of Geneva workshops. We engineered a scroll-choreographed interactive narrative using mathematical Bézier vector tracers and specular letter glints that guide collectors through caliber mechanics to private reservation.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">Scroll-Driven Choreography via GSAP Timelines</li>
+                <li class="service-modal-item">Microscopic Caliber Vector Animations &amp; SVG Tracers</li>
+                <li class="service-modal-item">Letter-Strict Specular Lighting &amp; Shader Accents</li>
+                <li class="service-modal-item">Private VIP Collector Reservation Concierge Interface</li>
+                <li class="service-modal-item">Full prefers-reduced-motion Accessible Fallback Architecture</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Commercial Result</div>
+              <p class="service-modal-approach-text">
+                100% allocation of 50 timepieces reserved within 48 hours &bull; International design recognition.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <button type="button" class="btn-primary btn-inquire-project" data-service-target="motion-interaction" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about a similar project</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </button>
+              <a href="mailto:hello@ostrelya.com?subject=Confidential%20Deck%20Request:%20Kronos%20Horology" class="footer-legal-link" style="font-size: 0.8125rem; text-decoration: underline;">
+                Request campaign deck ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Modal 04: ○ — Built for What’s Next -->
+    <div class="service-modal-backdrop" id="project-modal-04" role="dialog" aria-modal="true" aria-labelledby="project-title-04" aria-hidden="true">
+      <div class="service-modal-dialog">
+        <div class="service-modal-header">
+          <div class="service-modal-brand">
+            <span class="service-modal-num">PROJECT 04 / 04</span>
+            <span class="service-modal-eyebrow">Brand &amp; Web &bull; Frontier Venture Capital</span>
+          </div>
+          <button type="button" class="service-modal-close" aria-label="Close project modal (Escape)">
+            <svg viewBox="0 0 14 14" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="2" y1="12" x2="12" y2="2"></line>
+              <polyline points="2 2 12 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="service-modal-content-grid">
+          <div class="service-modal-visual-pane">
+            <img src="assets/project-4.jpg" alt="Built for What's Next — European Frontier Venture Capital" class="service-modal-img" />
+          </div>
+          <div class="service-modal-text-pane">
+            <div>
+              <div class="editorial-eyebrow" style="margin-bottom: 0.5rem;">
+                <span class="eyebrow-text">ORBIT CAPITAL &mdash; ZAGREB / BERLIN</span>
+                <span class="eyebrow-rule" aria-hidden="true"></span>
+              </div>
+              <h2 class="service-modal-title" id="project-title-04">Built for What’s Next</h2>
+              <p class="service-modal-lead">
+                A definitive, architectural digital presence for a &euro;150M venture firm investing in robotics, quantum technologies, and synthetic biology, deliberately rejecting standard tech startup templates.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">The Challenge &amp; Execution</div>
+              <p class="service-modal-approach-text" style="font-size: 0.9375rem; line-height: 1.65; color: var(--text-secondary); margin-bottom: 1rem;">
+                Orbit needed an authoritative digital home that conveys institutional staying power to European sovereign funds while remaining sharp, modern, and magnetic to brilliant founders. We delivered a monolithic typographic identity, an ultra-fast founder portfolio archive with instant client-side filtering, and an encrypted LP investor reporting gateway.
+              </p>
+            </div>
+
+            <div>
+              <div class="service-modal-deliverables-title">Scope &amp; Deliverables</div>
+              <ul class="service-modal-list">
+                <li class="service-modal-item">Monolithic Typographic Identity &amp; Editorial Layout System</li>
+                <li class="service-modal-item">Real-Time Founder Portfolio Archive with Instant Filtering</li>
+                <li class="service-modal-item">Limited Partner (LP) Quarterly Portal UI Specification</li>
+                <li class="service-modal-item">Continuous Technical Health, SEO &amp; Compliance Retainer</li>
+                <li class="service-modal-item">Sub-half-second Load Times on Global Edge Infrastructure</li>
+              </ul>
+            </div>
+
+            <div class="service-modal-approach-box">
+              <div class="service-modal-approach-title">Operational SLA</div>
+              <p class="service-modal-approach-text">
+                Retained partnership with 99.98% uptime SLA and 24h sprint turnarounds for new portfolio additions.
+              </p>
+            </div>
+
+            <div class="service-modal-action-row">
+              <button type="button" class="btn-primary btn-inquire-project" data-service-target="full-scope" style="padding: 0.85rem 1.85rem;">
+                <span>Inquire about a similar project</span>
+                <svg class="icon-arrow" viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="2" y1="12" x2="12" y2="2"></line>
+                  <polyline points="4 2 12 2 12 10"></polyline>
+                </svg>
+              </button>
+              <a href="mailto:hello@ostrelya.com?subject=Confidential%20Deck%20Request:%20Orbit%20Capital" class="footer-legal-link" style="font-size: 0.8125rem; text-decoration: underline;">
+                Request venture deck ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
   <script src="script.js"></script>
 </body>
